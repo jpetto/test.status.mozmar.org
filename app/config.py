@@ -1,6 +1,7 @@
 from decouple import config
 
 DEBUG = config('DEBUG', default=True, cast=bool)
+VERSION = config('GIT_SHA', default='')
 
 GITHUB_USERNAME = config('GITHUB_USERNAME')
 GITHUB_PASSWORD = config('GITHUB_PASSWORD')
@@ -17,10 +18,18 @@ NEW_RELIC_QUERY_KEY = config('NEW_RELIC_QUERY_KEY')
 
 DMS_PING_URL = config('DMS_PING_URL')
 
+SENTRY_DSN = config('SENTRY_DSN', default=None)
+
 STATUS_MAP = {
     'pending': {
         'name': 'pending',
         'order': 10,
+        'global_name': 'Awaiting status for all systems',
+    },
+    'paused': {
+        'name': 'paused',
+        'order': 15,
+        'global_name': 'Some systems are paused',
     },
     'healthy': {
         'name': 'healthy',
